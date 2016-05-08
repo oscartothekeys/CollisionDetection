@@ -11,7 +11,7 @@ Next, add the following features:
 
 var puck_x = 210;
 var puck_y = 210;
-var speed = 10;
+var speed = 50;
 
 document.getElementById("puck").style.top = puck_y + 'px';
 document.getElementById("puck").style.left = puck_x + 'px';
@@ -34,14 +34,50 @@ function checkCollision() {
     }
 }
 
-function borderControl() {
-    if (puck_x > 600 || puck_x < 0 || puck_y > 400 || puck_y < 0 ) {
-        speed = 0 +'px' ;
+function borderControlRight() {
+    if (puck_x < 560 ) {
         console.log("out of bounds")
+         document.getElementById("right").style.display ="block";
     }
     
     else {
-        var speed = 50;
+        document.getElementById("right").style.display ="none";
+        console.log ("in boundary")
+    }
+}
+
+function borderControlLeft() {
+    if (puck_x > 0 ) {
+        console.log("out of bounds")
+         document.getElementById("left").style.display ="block";
+    }
+    
+    else {
+        document.getElementById("left").style.display ="none";
+        console.log ("in boundary")
+    }
+}
+
+function borderControlUp() {
+    if (puck_y > 0 ) {
+        console.log("out of bounds")
+         document.getElementById("up").style.display ="block";
+    }
+    
+    else {
+        document.getElementById("up").style.display ="none";
+        console.log ("in boundary")
+    }
+}
+
+function borderControlDown() {
+    if (puck_y < 400 ) {
+        console.log("out of bounds")
+         document.getElementById("down").style.display ="block";
+    }
+    
+    else {
+        document.getElementById("down").style.display ="none";
         console.log ("in boundary")
     }
 }
@@ -71,8 +107,7 @@ document.getElementById("right").addEventListener("click", function(){
     document.getElementById("puck").style.left = puck_x + 'px';
     logCoordinates()
     checkCollision()
-    borderControl()
-    itemCollisionBig()
+    borderControlRight()
     itemCollisionSmall()
 });
 
@@ -81,7 +116,7 @@ document.getElementById("left").addEventListener("click", function(){
     document.getElementById("puck").style.left = puck_x + 'px';
     logCoordinates()
     checkCollision()
-    borderControl()
+    borderControlLeft()
     itemCollisionBig()
     itemCollisionSmall()
 });
@@ -91,7 +126,7 @@ document.getElementById("up").addEventListener("click", function(){
     document.getElementById("puck").style.top = puck_y + 'px';
     logCoordinates()
     checkCollision()
-    borderControl()
+    borderControlUp()
     itemCollisionBig()
     itemCollisionSmall()
 });
@@ -101,7 +136,7 @@ document.getElementById("down").addEventListener("click", function(){
     document.getElementById("puck").style.top = puck_y + 'px';
     logCoordinates()
     checkCollision()
-    borderControl()
+    borderControlDown()
     itemCollisionBig()
     itemCollisionSmall()
 });
